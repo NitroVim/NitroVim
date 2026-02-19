@@ -6,6 +6,7 @@ require("nvim-treesitter").setup({
     "typescript",
     "tsx",
     "html",
+    "xml",
     "css",
     "json",
     "c_sharp",

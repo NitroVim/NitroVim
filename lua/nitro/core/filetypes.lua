@@ -1,3 +1,7 @@
 vim.filetype.add({
-  extension = { razor = "html" },
+  extension = {
+    razor = "html",
+    xaml = "xml",
+    axaml = "xml",
+  },
 })
