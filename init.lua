@@ -19,7 +19,6 @@ require("nitro.ui.statusline")
 require("nitro.ui.nvimtree")
 
 require("nitro.lsp.lsp")
-require("nitro.lsp.autocompletion")
 
 require("nitro.snippets.snippets")
 require("nitro.snippets.custom.custom_snippets")
