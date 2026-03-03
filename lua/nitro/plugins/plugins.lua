@@ -116,7 +116,7 @@ require("lazy").setup({
   },
 
   -- LSP + Mason
- {
+  {
     "mason-org/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
     "b0o/schemastore.nvim",
@@ -149,8 +149,22 @@ require("lazy").setup({
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 
   -- CSS utilities
-  { "norcalli/nvim-colorizer.lua" },
-  { "NvChad/nvim-colorizer.lua" },
+  {
+    "catgoose/nvim-colorizer.lua",
+    event = "BufReadPre",
+    opts = {
+      options = {},
+      filetypes = {
+        "*",
+        "!NvimTree",
+        "!dashboard",
+        "!alpha",
+        "!lazy",
+        "!TelescopePrompt",
+        "!neo-tree",
+      },
+    },
+  },
 
   -- Auto Save
   {
