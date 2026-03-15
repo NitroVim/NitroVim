@@ -1,4 +1,4 @@
-![Banner](https://github.com/user-attachments/assets/60141194-0f2b-4be2-bd62-638bed75ee52)
+![Banner](https://github.com/user-attachments/assets/ac4a7952-4876-423f-a9bc-119891b62b42)
 
 <h3 align="center">A modern, blazing-fast Neovim distribution designed for an exceptional development experience.</h3>
 
