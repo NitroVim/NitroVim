@@ -8,6 +8,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local dap_config = require("nitro.core.dap")
+local copilot_config = require("nitro.core.copilot")
+local neotest_config = require("nitro.core.neotest")
+
 require("lazy").setup({
 
   -- File Explorer
@@ -140,6 +144,44 @@ require("lazy").setup({
   { "hrsh7th/cmp-path" },
   { "hrsh7th/cmp-cmdline" },
   { "saadparwaiz1/cmp_luasnip" },
+
+  -- AI
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    opts = copilot_config.copilot_opts,
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      "zbirenbaum/copilot.lua",
+      "nvim-lua/plenary.nvim",
+    },
+    cmd = {
+      "CopilotChat",
+      "CopilotChatOpen",
+      "CopilotChatClose",
+      "CopilotChatToggle",
+    },
+    keys = copilot_config.chat_keys,
+    opts = copilot_config.chat_opts,
+  },
+
+  -- Debugging
+  {
+    "mfussenegger/nvim-dap",
+    config = dap_config.setup_dap,
+    keys = dap_config.keys,
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio",
+    },
+    config = dap_config.setup_dapui,
+  },
 
   -- Snippets
   { "L3MON4D3/LuaSnip" },
@@ -294,7 +336,9 @@ require("lazy").setup({
   { "hrsh7th/vim-vsnip" },
   {
     "seblyng/roslyn.nvim",
-    opts = {},
+    opts = {
+      ft = { "cs", "razor" },
+    },
   },
 
   -- Draw ASCII diagrams
@@ -386,51 +430,8 @@ require("lazy").setup({
   -- Neotest
   {
     "nvim-neotest/neotest",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "antoinemadec/FixCursorHold.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "Issafalcon/neotest-dotnet",
-      "nvim-neotest/nvim-nio",
-      "haydenmeade/neotest-jest",
-    },
-    config = function()
-      local neotest = require("neotest")
-
-      neotest.setup({
-        adapters = {
-          require("neotest-dotnet")({
-            dap = { justMyCode = false },
-          }),
-
-          require("neotest-jest")({
-            jestCommand = "npm run test --",
-            jestConfigFile = "jest.config.js",
-            env = { CI = true },
-            cwd = function()
-              return vim.fn.getcwd()
-            end,
-          }),
-        },
-
-        diagnostic = {
-          enabled = true,
-        },
-        summary = {
-          open = "botright vsplit | vertical resize 40",
-        },
-        output = {
-          open_on_run = "short",
-        },
-      })
-
-      vim.keymap.set("n", "<leader>tn", function() neotest.run.run() end, { desc = "Run nearest test" })
-      vim.keymap.set("n", "<leader>tf", function() neotest.run.run(vim.fn.expand("%")) end,
-        { desc = "Run all tests in file" })
-      vim.keymap.set("n", "<leader>ts", function() neotest.summary.toggle() end, { desc = "Toggle summary" })
-      vim.keymap.set("n", "<leader>to", function() neotest.output.open({ enter = true }) end,
-        { desc = "Open test output" })
-    end,
+    dependencies = neotest_config.dependencies,
+    config = neotest_config.setup,
   },
 
   -- Text Case
@@ -463,5 +464,74 @@ require("lazy").setup({
       require("r").setup()
     end,
     ft = { "r", "rmd", "quarto" },
+  },
+
+  --- editorconfig
+
+  { "editorconfig/editorconfig-vim" },
+
+  -- Render markdown
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },
+    opts = {},
+  },
+
+  -- Diagnostics
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "VeryLazy",
+    priority = 1000,
+    config = function()
+      require("tiny-inline-diagnostic").setup()
+      vim.diagnostic.config({ virtual_text = false })
+    end,
+  },
+
+  { "onsails/lspkind.nvim" },
+
+  {
+    "nvimdev/lspsaga.nvim",
+    event = "LspAttach",
+    config = function()
+      require("lspsaga").setup({
+        ui = {
+          winbar = {
+            enabled = false,
+          },
+        },
+        lightbulb = {
+          enable = false,
+        },
+      })
+      vim.lsp.handlers["textDocument/hover"] =
+          require("lspsaga.hover").hover_handler
+    end,
+
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+  },
+
+  -- Indent
+  {
+    'nvimdev/indentmini.nvim',
+    event = 'BufEnter',
+    config = function()
+      require('indentmini').setup()
+    end,
+  },
+
+  -- Nuget Gallery
+  {
+    "d7omdev/nuget.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = function()
+      require("nuget").setup()
+    end,
   }
 })
