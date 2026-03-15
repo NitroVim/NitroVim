@@ -47,6 +47,7 @@ With NitroVim, you get a **ready-to-use, blazing-fast Neovim setup** without spe
 - [Features](#-features)
 - [Keybindings](#-keybindings)
 - [Installation](#-installation)
+- [Documentation](#-documentation)
 - [Plugins](#-plugins)
 - [Language Support](#-language-support)
 - [Customization](#-customization)
@@ -115,11 +116,22 @@ With NitroVim, you get a **ready-to-use, blazing-fast Neovim setup** without spe
 | `:TransparentToggle`  | Toggle transparency      |
 | `:ThemeSwitch`        | Open theme switcher menu |
 
+## 📖 Documentation
+
+Detailed documentation can be found in the [docs](./docs) directory:
+
+- [Keymaps](./docs/keymaps.md) - Full list of shortcuts
+- [Commands](./docs/commands.md) - Custom user commands
+- [Plugins](./docs/plugins.md) - Plugin overview and configuration
+- [Features](./docs/features.md) - AI Chat, Debugging, and more
+- [Customization](./docs/customization.md) - How to extend NitroVim
+
 ## Learning & Documentation
 
 | Command       | Description                      |
 | ------------- | -------------------------------- |
 | `:NitroLearn` | Open NitroVim learning dashboard |
+| `:Dashboard`  | Open NitroVim start screen       |
 
 ## 🛠️ Installation
 
@@ -231,6 +243,8 @@ Built-in support for:
 - And more...
 
 ## ⚙️ Customization
+
+For detailed instructions on personalizing NitroVim, see the [Customization Guide](./docs/customization.md).
 
 ### Adding Plugins
 
