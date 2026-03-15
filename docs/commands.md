@@ -19,6 +19,7 @@ These commands are unique to the NitroVim distribution.
 
 | Command | Description |
 | --- | --- |
+| `:Dashboard` | Opens the main start screen/dashboard. |
 | `:TransparentToggle` | Toggles the transparency effect for the editor. |
 | `:TransparentEnable` | Enables transparency. |
 | `:TransparentDisable` | Disables transparency. |
