@@ -57,3 +57,10 @@ map("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix List
 map("n", "<leader>f", function()
   vim.lsp.buf.format()
 end, { noremap = true, silent = true, desc = "Format Code" })
+
+-- Lspsaga
+map("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+map("n", "F", "<cmd>Lspsaga code_action<CR>")
+map("n", "gd", "<cmd>Lspsaga peek_definition<CR>")
+map("n", "gr", "<cmd>Lspsaga finder<CR>")
+map("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>")
