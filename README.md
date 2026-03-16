@@ -276,7 +276,7 @@ vim.keymap.set('mode', 'key', 'action')
 ## 📸 Screenshots
 
 #### Dashboard
-<img width="1920" height="1039" alt="Screenshot (386)" src="https://github.com/user-attachments/assets/a26b4c29-e4e2-44fe-910a-88a5d258e1d4" />
+<img width="1904" height="985" alt="Screenshot from 2026-03-16 21-53-42" src="https://github.com/user-attachments/assets/b6c64ae3-e9ec-42f5-ad6e-53584e849c8f" />
 
 #### Editor
 <img width="1920" height="1019" alt="Screenshot (365)" src="https://github.com/user-attachments/assets/a0207659-b734-4271-b83e-c57f37d2b25e" />
