@@ -1,7 +1,6 @@
 require("nitro.snippets.custom.servers.html")
 require("nitro.snippets.custom.servers.djangohtml")
 require("nitro.snippets.custom.servers.javascript")
-require("nitro.snippets.custom.servers.javascriptreact")
-require("nitro.snippets.custom.servers.typescriptreact")
+require("nitro.snippets.custom.servers.react")
 require("nitro.snippets.custom.servers.python")
 require("nitro.snippets.custom.servers.cs")
