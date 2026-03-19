@@ -340,6 +340,7 @@ require("lazy").setup({
       ft = { "cs", "razor" },
     },
   },
+  { "jlcrochet/vim-razor", },
 
   -- Draw ASCII diagrams
   {
