@@ -3,26 +3,26 @@
 <h3 align="center">A modern, blazing-fast Neovim distribution designed for an exceptional development experience.</h3>
 
 <p align="center">
-  <a href="https://github.com/usmonovshohruxmirzo/nitrovim/stargazers">
-    <img src="https://img.shields.io/github/stars/usmonovshohruxmirzo/nitrovim?style=for-the-badge&color=yellow" alt="Stars" />
+  <a href="https://github.com/NitroVim/nitrovim/stargazers">
+    <img src="https://img.shields.io/github/stars/NitroVim/nitrovim?style=for-the-badge&color=yellow" alt="Stars" />
   </a>
-  <a href="https://github.com/usmonovshohruxmirzo/nitrovim/network/members">
-    <img src="https://img.shields.io/github/forks/usmonovshohruxmirzo/nitrovim?style=for-the-badge&color=blue" alt="Forks" />
+  <a href="https://github.com/NitroVim/nitrovim/network/members">
+    <img src="https://img.shields.io/github/forks/NitroVim/nitrovim?style=for-the-badge&color=blue" alt="Forks" />
   </a>
-  <a href="https://github.com/usmonovshohruxmirzo/nitrovim/issues">
-    <img src="https://img.shields.io/github/issues/usmonovshohruxmirzo/nitrovim?style=for-the-badge&color=orange" alt="Issues" />
+  <a href="https://github.com/NitroVim/nitrovim/issues">
+    <img src="https://img.shields.io/github/issues/NitroVim/nitrovim?style=for-the-badge&color=orange" alt="Issues" />
   </a>
-  <a href="https://github.com/usmonovshohruxmirzo/nitrovim/pulls">
-    <img src="https://img.shields.io/github/issues-pr/usmonovshohruxmirzo/nitrovim?style=for-the-badge&color=purple" alt="Pull Requests" />
+  <a href="https://github.com/NitroVim/nitrovim/pulls">
+    <img src="https://img.shields.io/github/issues-pr/NitroVim/nitrovim?style=for-the-badge&color=purple" alt="Pull Requests" />
   </a>
-  <a href="https://github.com/usmonovshohruxmirzo/nitrovim/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/usmonovshohruxmirzo/nitrovim?style=for-the-badge&color=success" alt="License" />
+  <a href="https://github.com/NitroVim/nitrovim/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/NitroVim/nitrovim?style=for-the-badge&color=success" alt="License" />
   </a>
-  <a href="https://github.com/usmonovshohruxmirzo/nitrovim/releases/latest">
-    <img src="https://img.shields.io/github/v/release/usmonovshohruxmirzo/nitrovim?style=for-the-badge&color=brightgreen" alt="Latest Release" />
+  <a href="https://github.com/NitroVim/nitrovim/releases/latest">
+    <img src="https://img.shields.io/github/v/release/NitroVim/nitrovim?style=for-the-badge&color=brightgreen" alt="Latest Release" />
   </a>
-  <a href="https://github.com/usmonovshohruxmirzo/nitrovim">
-    <img src="https://img.shields.io/github/repo-size/usmonovshohruxmirzo/nitrovim?style=for-the-badge&color=red" alt="Repo Size" />
+  <a href="https://github.com/NitroVim/nitrovim">
+    <img src="https://img.shields.io/github/repo-size/NitroVim/nitrovim?style=for-the-badge&color=red" alt="Repo Size" />
   </a>
 
 </p>
@@ -200,13 +200,13 @@ choco install neovim
 #### Clone NitroVim
 
 ```powershell
-git clone https://github.com/usmonovshohruxmirzo/nitrovim "$env:LOCALAPPDATA\nvim"
+git clone https://github.com/NitroVim/nitrovim "$env:LOCALAPPDATA\nvim"
 ```
 
 ### Linux/macOS
 
 ```bash
-git clone https://github.com/usmonovshohruxmirzo/nitrovim ~/.config/nvim
+git clone https://github.com/NitroVim/nitrovim ~/.config/nvim
 ```
 
 ## 🔌 Plugins
@@ -315,8 +315,8 @@ vim.keymap.set('mode', 'key', 'action')
 
 4. Reporting Issues:
    If you encounter any problems:
-   1. Check the [existing issues](https://github.com/usmonovshohruxmirzo/nitrovim/issues) first
-   2. [Open a new issue](https://github.com/usmonovshohruxmirzo/nitrovim/issues/new) with:
+   1. Check the [existing issues](https://github.com/NitroVim/nitrovim/issues) first
+   2. [Open a new issue](https://github.com/NitroVim/nitrovim/issues/new) with:
       - NitroVim version (`git rev-parse HEAD` in your config directory)
       - Neovim version (`:version`)
       - Operating system
