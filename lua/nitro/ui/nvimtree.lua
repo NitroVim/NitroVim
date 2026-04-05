@@ -114,6 +114,8 @@ nvim_tree.setup({
 
   filters = { dotfiles = false },
 
+  filesystem_watchers = { enable = false },
+
   git = { enable = true, ignore = false, show_on_dirs = true, show_on_open_dirs = true, timeout = 400 },
 
   diagnostics = {
@@ -259,6 +261,8 @@ vim.api.nvim_create_user_command("FileExplorer", function(opts)
 
       filters = { dotfiles = false },
 
+      filesystem_watchers = { enable = false },
+
       git = { enable = true, ignore = false, show_on_dirs = true, show_on_open_dirs = true, timeout = 400 },
 
       diagnostics = {
@@ -355,6 +359,8 @@ vim.api.nvim_create_user_command("FileExplorer", function(opts)
       update_focused_file = { enable = true },
 
       filters = { dotfiles = false },
+
+      filesystem_watchers = { enable = false },
 
       git = { enable = true, ignore = false, show_on_dirs = true, show_on_open_dirs = true, timeout = 400 },
 
@@ -466,6 +472,8 @@ vim.api.nvim_create_user_command("FileExplorer", function(opts)
       update_focused_file = { enable = true },
 
       filters = { dotfiles = false },
+
+      filesystem_watchers = { enable = false },
 
       git = { enable = true, ignore = false, show_on_dirs = true, show_on_open_dirs = true, timeout = 400 },
 
