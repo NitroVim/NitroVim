@@ -341,7 +341,6 @@ require("lazy").setup({
   },
 
   -- C#
-  { "OrangeT/vim-csharp" },
   { "hrsh7th/vim-vsnip" },
   {
     "seblyng/roslyn.nvim",
