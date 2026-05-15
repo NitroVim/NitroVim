@@ -71,7 +71,7 @@ dashboard.setup({
         key = "l",
         key_hl = "DashboardCenter",
         action = function()
-          require("auto-session").RestoreSession()
+          require("auto-session").restore_session()
         end,
       },
       {
