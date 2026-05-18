@@ -21,8 +21,6 @@ require("lazy").setup({
   { "navarasu/onedark.nvim" },
   { "folke/tokyonight.nvim" },
   { "tanvirtin/monokai.nvim" },
-  { "folke/tokyonight.nvim" },
-  { "tanvirtin/monokai.nvim" },
   { "ellisonleao/gruvbox.nvim" },
   { "catppuccin/nvim",         name = "catppuccin" },
   { "Mofiqul/dracula.nvim" },
@@ -313,9 +311,6 @@ require("lazy").setup({
   },
 
   -- Vim Surround
-  {
-    "tpope/vim-surround"
-  },
   {
     "kylechui/nvim-surround",
     version = "*",
