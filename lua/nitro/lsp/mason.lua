@@ -12,7 +12,8 @@ require("mason-lspconfig").setup({
     "jsonls",
     "pyright",
     "rust_analyzer",
-    "clangd"
+    "clangd",
+    "fsautocomplete"
   },
   automatic_installation = true,
 })

@@ -15,7 +15,7 @@ require("nvim-treesitter").setup({
     "markdown",
     "markdown_inline",
     "python",
-    "r",
+    "fsharp"
   },
   highlight = {
     enable = true,
