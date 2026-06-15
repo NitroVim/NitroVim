@@ -103,7 +103,7 @@ nvim_tree.setup({
       },
     },
     root_folder_label = function(path)
-      return "󱉟 " .. vim.fn.fnamemodify(path, ":t")
+      return "󰋜 " .. vim.fn.fnamemodify(path, ":t")
     end,
     special_files = { "README.md", "Makefile", "Cargo.toml", "package.json" },
   },
