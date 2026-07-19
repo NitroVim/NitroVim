@@ -288,7 +288,7 @@ vim.keymap.set('mode', 'key', 'action')
 <img width="1896" height="1023" alt="image" src="https://github.com/user-attachments/assets/a62292d7-20ba-4002-ad4b-19f33274a523" />
 
 #### 20+ Themes
-<img width="1920" height="1017" alt="Screenshot (368)" src="https://github.com/user-attachments/assets/bcd698e2-0ffb-43a7-afd0-1b4956667ca6" />
+<img width="1896" height="1023" alt="image" src="https://github.com/user-attachments/assets/cf3312b0-04dd-4d87-9dd4-d74825808a26" />
 
 #### Transparency
 <img width="1920" height="1035" alt="Screenshot (369)" src="https://github.com/user-attachments/assets/925b0237-326c-438d-b6ba-755121a76edf" />
