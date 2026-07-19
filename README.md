@@ -285,7 +285,7 @@ vim.keymap.set('mode', 'key', 'action')
 <img width="1896" height="1023" alt="image" src="https://github.com/user-attachments/assets/a50b22f4-da3c-4592-8b2c-5032f9904e70" />
 
 #### LazyGit
-<img width="1920" height="1017" alt="Screenshot (367)" src="https://github.com/user-attachments/assets/606190d4-5923-4ed4-a7b3-b6c3249106e2" />
+<img width="1896" height="1023" alt="image" src="https://github.com/user-attachments/assets/a62292d7-20ba-4002-ad4b-19f33274a523" />
 
 #### 20+ Themes
 <img width="1920" height="1017" alt="Screenshot (368)" src="https://github.com/user-attachments/assets/bcd698e2-0ffb-43a7-afd0-1b4956667ca6" />
