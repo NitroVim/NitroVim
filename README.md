@@ -291,7 +291,7 @@ vim.keymap.set('mode', 'key', 'action')
 <img width="1896" height="1023" alt="image" src="https://github.com/user-attachments/assets/cf3312b0-04dd-4d87-9dd4-d74825808a26" />
 
 #### Transparency
-<img width="1920" height="1035" alt="Screenshot (369)" src="https://github.com/user-attachments/assets/925b0237-326c-438d-b6ba-755121a76edf" />
+<img width="1896" height="1023" alt="image" src="https://github.com/user-attachments/assets/e709e45d-7e64-42f0-a8ee-2446e56b3277" />
 
 ## 🔧 Troubleshooting
 
