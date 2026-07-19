@@ -1,18 +1,5 @@
 local dashboard = require('dashboard')
 
-local quotes = {
-  "💡 Tip: Stay in Normal mode more — that’s the Vim way!",
-  "🚀 Speed comes from muscle memory, not menus.",
-  "⚡ Focus on editing, not configuring. NitroVim’s got your back.",
-  "🌌 Small configs, big productivity.",
-  "🔥 Code fast, exit faster. :wq",
-  "📖 Learn one command a day, master Vim in a year.",
-  "🎯 Motion > Mouse. Always.",
-}
-
-math.randomseed(os.time())
-local random_quote = quotes[math.random(#quotes)]
-
 dashboard.setup({
   theme = 'doom',
   config = {
@@ -168,12 +155,8 @@ dashboard.setup({
     },
     footer = {
       "",
-      "💻 github.com/NitroVim  |   📦 @NitroBrain",
+      "󰊤 github.com/NitroVim",
       "",
-      "⚡ Fast. Minimal. Lua.  |  🚀 Crafted for Speed",
-      "",
-      random_quote,
-      "",
-    },
+    }
   },
 })
