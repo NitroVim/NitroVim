@@ -282,7 +282,7 @@ vim.keymap.set('mode', 'key', 'action')
 <img width="1896" height="1023" alt="image" src="https://github.com/user-attachments/assets/1fff5f73-6eaf-435b-8daa-824ab6a76450" />
 
 #### Fuzzy Finder
-<img width="1920" height="1020" alt="Screenshot (366)" src="https://github.com/user-attachments/assets/0cddb8c4-e139-425a-8f65-8ce4da535953" />
+<img width="1896" height="1023" alt="image" src="https://github.com/user-attachments/assets/a50b22f4-da3c-4592-8b2c-5032f9904e70" />
 
 #### LazyGit
 <img width="1920" height="1017" alt="Screenshot (367)" src="https://github.com/user-attachments/assets/606190d4-5923-4ed4-a7b3-b6c3249106e2" />
