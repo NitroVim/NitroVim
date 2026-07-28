@@ -27,7 +27,7 @@
 
 </p>
 
-## 💡 Problem & Solution
+## Problem & Solution
 
 **Problem:**
 There are many excellent Neovim distributions available, but most require extensive configuration to get a smooth, modern development experience. This setup process can be time-consuming and frustrating, especially for newcomers.
@@ -42,7 +42,7 @@ There are many excellent Neovim distributions available, but most require extens
 
 With NitroVim, you get a **ready-to-use, blazing-fast Neovim setup** without spending hours configuring plugins and settings. Just install, and start coding.
 
-## 📚 Table of Contents
+## Table of Contents
 
 - [Features](#-features)
 - [Keybindings](#-keybindings)
@@ -53,17 +53,17 @@ With NitroVim, you get a **ready-to-use, blazing-fast Neovim setup** without spe
 - [Customization](#-customization)
 - [Troubleshooting](#-troubleshooting)
 
-## ✨ Features
+## Features
 
-- 🚀 **LSP Integration** - Native language server support
-- 💡 **Smart Completion** - Context-aware suggestions
-- 🔍 **Fuzzy Finding** - Quick file and text search
-- 🌳 **File Explorer** - Tree-style project navigation
-- 🎨 **20+ Themes** - With transparency support
-- ⚡ **Lazy Loading** - Fast startup times
-- 📦 **Git Integration** - Built-in source control
-- 🔌 **Plugin System** - Extensible architecture
-- 🪟 **Transparent UI** — Adjustable window and panel opacity for seamless desktop blending
+- **LSP Integration** - Native language server support
+- **Smart Completion** - Context-aware suggestions
+- **Fuzzy Finding** - Quick file and text search
+- **File Explorer** - Tree-style project navigation
+- **20+ Themes** - With transparency support
+- **Lazy Loading** - Fast startup times
+- **Git Integration** - Built-in source control
+- **Plugin System** - Extensible architecture
+- **Transparent UI** — Adjustable window and panel opacity for seamless desktop blending
 ## ⌨ Keybindings
 
 ### General
@@ -116,7 +116,7 @@ With NitroVim, you get a **ready-to-use, blazing-fast Neovim setup** without spe
 | `:TransparentToggle`  | Toggle transparency      |
 | `:ThemeSwitch`        | Open theme switcher menu |
 
-## 📖 Documentation
+## Documentation
 
 Detailed documentation can be found in the [docs](./docs) directory:
 
@@ -209,7 +209,7 @@ git clone https://github.com/NitroVim/NitroVim "$env:LOCALAPPDATA\nvim"
 git clone https://github.com/NitroVim/NitroVim ~/.config/nvim
 ```
 
-## 🔌 Plugins
+## Plugins
 
 Core plugins included:
 
@@ -226,7 +226,7 @@ Core plugins included:
 - project.nvim (Project management)
 - auto-session (Session management)
 
-## 🎯 Language Support
+## Language Support
 
 Built-in support for:
 
@@ -242,7 +242,7 @@ Built-in support for:
 - JSON/YAML
 - And more...
 
-## ⚙️ Customization
+## Customization
 
 For detailed instructions on personalizing NitroVim, see the [Customization Guide](./docs/customization.md).
 
@@ -273,7 +273,7 @@ Edit `lua/nitro/core/keymaps.lua`:
 vim.keymap.set('mode', 'key', 'action')
 ```
 
-## 📸 Screenshots
+## Screenshots
 
 #### Dashboard
 <img width="1896" height="1023" alt="image" src="https://github.com/user-attachments/assets/e3ae58b0-d83a-4d55-b1ee-bbf6bea4f46f" />
@@ -293,7 +293,7 @@ vim.keymap.set('mode', 'key', 'action')
 #### Transparency
 <img width="1896" height="1023" alt="image" src="https://github.com/user-attachments/assets/e709e45d-7e64-42f0-a8ee-2446e56b3277" />
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 1. Run health checks:
 
@@ -325,7 +325,7 @@ vim.keymap.set('mode', 'key', 'action')
       - Screenshots/error messages if applicable
       - Relevant config files or changes you made
 
-## 📊 Performance
+## Performance
 
 - Startup Time: ~50ms
 - Memory Usage: ~100MB
