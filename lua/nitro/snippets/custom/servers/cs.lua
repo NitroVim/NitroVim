@@ -79,6 +79,9 @@ ls.add_snippets("cs", {
   -- get/set
   s("get", t("{ get; set; }")),
 
+  -- get/init
+  s("geti", t("{ get; init; }")),
+
   -- Full Program Skeleton
   ls.add_snippets("cs", {
     s(
