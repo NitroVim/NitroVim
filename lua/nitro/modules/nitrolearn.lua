@@ -165,7 +165,7 @@ M.open = function()
   local action_state = require("telescope.actions.state")
 
   pickers.new({}, {
-    prompt_title = "NitroLearn 🧠 (Vim Commands + Keymaps)",
+    prompt_title = "NitroLearn (Vim Commands + Keymaps)",
     finder = finders.new_table {
       results = M.learn_items,
       entry_maker = function(entry)
