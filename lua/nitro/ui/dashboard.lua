@@ -153,10 +153,15 @@ dashboard.setup({
         action = "qa",
       },
     },
-    footer = {
-      "",
-      "󰊤 github.com/NitroVim",
-      "",
-    }
+    footer = function()
+      local stats = require("lazy").stats()
+      local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+      return {
+        "",
+        "Startup: " .. ms .. "ms / Plugins: " .. stats.loaded .. "/" .. stats.count,
+        "󰊤 github.com/NitroVim",
+        "",
+      }
+    end,
   },
 })
