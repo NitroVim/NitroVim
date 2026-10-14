@@ -1,5 +1,5 @@
 vim.opt.termguicolors = true
-vim.opt.showtabline = 5
+vim.opt.showtabline = 2
 
 require("bufferline").setup({
   options = {
