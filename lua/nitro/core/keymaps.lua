@@ -13,6 +13,7 @@ local function toggle_term_bottom()
 end
 
 map("n", "<leader>t", toggle_term_bottom, { noremap = true, silent = true, desc = "Toggle Terminal Bottom" })
+map("t", "<Esc><Esc>", [[<C-\><C-n>]], { noremap = true, silent = true, desc = "Leave Terminal Mode" })
 
 map("t", "<leader>t", function()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", false)
