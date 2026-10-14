@@ -156,10 +156,13 @@ dashboard.setup({
     footer = function()
       local stats = require("lazy").stats()
       local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+      local v = vim.version()
+      local version = "NVIM " .. v.major .. "." .. v.minor .. "." .. v.patch
       return {
         "",
         "Startup: " .. ms .. "ms / Plugins: " .. stats.loaded .. "/" .. stats.count,
         "󰊤 github.com/NitroVim",
+        version,
         "",
       }
     end,
