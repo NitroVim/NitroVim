@@ -1,3 +1,6 @@
+> [!WARNING]
+> For the smoothest experience, we recommend **Neovim 0.11.6**. NitroVim is currently being optimized for **future Neovim versions**.
+
 ![Banner](https://github.com/user-attachments/assets/ac4a7952-4876-423f-a9bc-119891b62b42)
 
 <h3 align="center">A modern, blazing-fast Neovim distribution designed for an exceptional development experience.</h3>
