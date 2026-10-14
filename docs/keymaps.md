@@ -91,15 +91,6 @@ This document provides a **complete and comprehensive** list of all keybindings 
 | `<leader>dr` | Open REPL |
 | `<leader>du` | Toggle DAP UI |
 
-## Testing (Neotest)
-
-| Key | Description |
-| --- | --- |
-| `<leader>tn` | Run nearest test |
-| `<leader>tf` | Run all tests in current file |
-| `<leader>ts` | Toggle test summary |
-| `<leader>to` | Open test output |
-
 ## Diagnostics & Lists (Trouble)
 
 | Key | Description |
