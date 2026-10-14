@@ -28,8 +28,8 @@ vim.api.nvim_create_user_command("CloseAllBuffers", function()
   vim.notify("All buffers except the current one have been deleted", vim.log.levels.INFO)
 end, { nargs = 0 })
 
-local Terminal = require("toggleterm.terminal").Terminal
 vim.api.nvim_create_user_command('VTerm', function(opts)
+  local Terminal = require("toggleterm.terminal").Terminal
   local n = tonumber(opts.args)
   if not n or n < 1 then
     print("Number of terminals must be >= 1")
