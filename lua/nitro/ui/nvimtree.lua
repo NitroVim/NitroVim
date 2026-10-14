@@ -31,41 +31,28 @@ local function read_position()
   return "center"
 end
 
-local saved_position = read_position()
+local function float_config()
+  local screen_w = vim.opt.columns:get()
+  local screen_h = vim.opt.lines:get()
+  local width = math.floor(screen_w * 0.4)
+  local height = math.floor(screen_h * 0.8)
 
-nvim_tree.setup({
+  return {
+    border = "rounded",
+    relative = "editor",
+    row = math.floor((screen_h - height) / 2),
+    col = math.floor((screen_w - width) / 2),
+    width = width,
+    height = height,
+  }
+end
+
+local config = {
   auto_reload_on_write = true,
   disable_netrw = true,
   hijack_cursor = true,
   hijack_netrw = true,
   sync_root_with_cwd = true,
-
-  view = {
-    width = 35,
-    side = saved_position == "right" and "right" or "left",
-    cursorline = true,
-    signcolumn = "yes",
-    float = {
-      enable = saved_position == "center",
-      open_win_config = function()
-        local screen_w = vim.opt.columns:get()
-        local screen_h = vim.opt.lines:get()
-        local win_w = math.floor(screen_w * 0.4)
-        local win_h = math.floor(screen_h * 0.8)
-        local win_w_int = math.floor((screen_w - win_w) / 2)
-        local win_h_int = math.floor((screen_h - win_h) / 2)
-        return {
-          border = "rounded",
-          relative = "editor",
-          row = win_h_int,
-          col = win_w_int,
-          width = win_w,
-          height = win_h,
-        }
-      end,
-    },
-  },
-
   renderer = {
     indent_width = 2,
     highlight_git = true,
@@ -107,24 +94,17 @@ nvim_tree.setup({
     end,
     special_files = { "README.md", "Makefile", "Cargo.toml", "package.json" },
   },
-
   hijack_directories = { enable = true, auto_open = true },
-
   update_focused_file = { enable = true },
-
   filters = { dotfiles = false },
-
   filesystem_watchers = { enable = false },
-
   git = { enable = true, ignore = false, show_on_dirs = true, show_on_open_dirs = true, timeout = 400 },
-
   diagnostics = {
     enable = true,
     show_on_dirs = true,
     show_on_open_dirs = false,
     icons = { hint = "󰌵", info = "󰋼", warning = "", error = "" },
   },
-
   actions = {
     use_system_clipboard = true,
     change_dir = { enable = true },
@@ -143,19 +123,33 @@ nvim_tree.setup({
     },
     remove_file = { close_window = false },
   },
-
   trash = { cmd = "trash", require_confirm = true },
-
   live_filter = { prefix = "╭─🔍 ", always_show_folders = true },
-
   notify = { threshold = vim.log.levels.INFO },
-})
+}
+
+local function setup_tree(position)
+  local options = vim.deepcopy(config)
+  options.view = {
+    width = 35,
+    side = position == "right" and "right" or "left",
+    cursorline = true,
+    signcolumn = "yes",
+    float = {
+      enable = position == "center",
+      open_win_config = float_config,
+    },
+  }
+  nvim_tree.setup(options)
+end
+
+setup_tree(read_position())
 
 local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', opts)
-vim.keymap.set('n', '<leader>r', '<cmd>NvimTreeRefresh<CR>', opts)
-vim.keymap.set('n', '<leader>n', '<cmd>NvimTreeFindFile<CR>', opts)
-vim.keymap.set('n', '<leader>o', '<cmd>NvimTreeFocus<CR>', opts)
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)
+vim.keymap.set("n", "<leader>r", "<cmd>NvimTreeRefresh<CR>", opts)
+vim.keymap.set("n", "<leader>n", "<cmd>NvimTreeFindFile<CR>", opts)
+vim.keymap.set("n", "<leader>o", "<cmd>NvimTreeFocus<CR>", opts)
 
 vim.cmd([[
   highlight NvimTreeNormal guibg=NONE ctermbg=NONE
@@ -168,7 +162,7 @@ vim.cmd([[
   highlight NvimTreeLiveFilterBorder guifg=#5E81AC guibg=NONE gui=bold
 ]])
 
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
+vim.api.nvim_create_autocmd("VimEnter", {
   callback = function(data)
     if vim.fn.isdirectory(data.file) == 1 then
       vim.cmd.cd(data.file)
@@ -181,339 +175,36 @@ vim.api.nvim_create_autocmd("QuitPre", {
   callback = function()
     local tree_wins, floating_wins = {}, {}
     local wins = vim.api.nvim_list_wins()
-    for _, w in ipairs(wins) do
-      local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(w))
-      if bufname:match("NvimTree_") then table.insert(tree_wins, w) end
-      if vim.api.nvim_win_get_config(w).relative ~= "" then table.insert(floating_wins, w) end
+    for _, win in ipairs(wins) do
+      local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win))
+      if bufname:match("NvimTree_") then
+        table.insert(tree_wins, win)
+      end
+      if vim.api.nvim_win_get_config(win).relative ~= "" then
+        table.insert(floating_wins, win)
+      end
     end
-    if 1 == #wins - #floating_wins - #tree_wins then
-      for _, w in ipairs(tree_wins) do vim.api.nvim_win_close(w, true) end
+    if #wins - #floating_wins - #tree_wins == 1 then
+      for _, win in ipairs(tree_wins) do
+        vim.api.nvim_win_close(win, true)
+      end
     end
   end,
 })
 
-vim.api.nvim_create_user_command("FileExplorer", function(opts)
-  local arg = opts.args:lower()
-
-  if arg == "left" or arg == "right" or arg == "center" then
-    save_position(arg)
-  end
-
-  if arg == "left" then
-    require("nvim-tree").setup({
-      view = {
-        width = 35,
-        side = "left",
-        cursorline = true,
-        signcolumn = "yes"
-      },
-      auto_reload_on_write = true,
-      disable_netrw = true,
-      hijack_cursor = true,
-      hijack_netrw = true,
-      sync_root_with_cwd = true,
-
-      renderer = {
-        indent_width = 2,
-        highlight_git = true,
-        highlight_opened_files = "none",
-        indent_markers = {
-          enable = true,
-          inline_arrows = true,
-          icons = { corner = "└", edge = "│", item = "│", bottom = "─", none = " " },
-        },
-        icons = {
-          webdev_colors = true,
-          git_placement = "after",
-          show = { file = true, folder = true, folder_arrow = true, git = true, modified = true },
-          glyphs = {
-            default = "",
-            symlink = "",
-            modified = "●",
-            folder = {
-              default = "",
-              open = "",
-              arrow_open = "",
-              arrow_closed = "",
-              empty = "",
-              empty_open = "",
-            },
-            git = {
-              unstaged = "",
-              staged = "✓",
-              unmerged = "",
-              renamed = "➜",
-              untracked = "★",
-              deleted = "",
-              ignored = "◌",
-            },
-          },
-        },
-        root_folder_label = function(path)
-          return "󱉟 " .. vim.fn.fnamemodify(path, ":t")
-        end,
-        special_files = { "README.md", "Makefile", "Cargo.toml", "package.json" },
-      },
-
-      hijack_directories = { enable = true, auto_open = true },
-
-      update_focused_file = { enable = true },
-
-      filters = { dotfiles = false },
-
-      filesystem_watchers = { enable = false },
-
-      git = { enable = true, ignore = false, show_on_dirs = true, show_on_open_dirs = true, timeout = 400 },
-
-      diagnostics = {
-        enable = true,
-        show_on_dirs = true,
-        show_on_open_dirs = false,
-        icons = { hint = "󰌵", info = "󰋼", warning = "", error = "" },
-      },
-
-      actions = {
-        use_system_clipboard = true,
-        change_dir = { enable = true },
-        open_file = {
-          quit_on_open = false,
-          resize_window = true,
-          window_picker = {
-            enable = true,
-            picker = "default",
-            chars = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-            exclude = {
-              filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
-              buftype = { "nofile", "terminal", "help" },
-            },
-          },
-        },
-        remove_file = { close_window = false },
-      },
-
-      trash = { cmd = "trash", require_confirm = true },
-
-      live_filter = { prefix = "╭─🔍 ", always_show_folders = true },
-
-      notify = { threshold = vim.log.levels.INFO },
-    })
-    vim.cmd("NvimTreeOpen")
-  elseif arg == "right" then
-    require("nvim-tree").setup({
-      view = {
-        width = 35,
-        side = "right",
-        cursorline = true,
-        signcolumn = "yes",
-      },
-      auto_reload_on_write = true,
-      disable_netrw = true,
-      hijack_cursor = true,
-      hijack_netrw = true,
-      sync_root_with_cwd = true,
-
-      renderer = {
-        indent_width = 2,
-        highlight_git = true,
-        highlight_opened_files = "none",
-        indent_markers = {
-          enable = true,
-          inline_arrows = true,
-          icons = { corner = "└", edge = "│", item = "│", bottom = "─", none = " " },
-        },
-        icons = {
-          webdev_colors = true,
-          git_placement = "after",
-          show = { file = true, folder = true, folder_arrow = true, git = true, modified = true },
-          glyphs = {
-            default = "",
-            symlink = "",
-            modified = "●",
-            folder = {
-              default = "",
-              open = "",
-              arrow_open = "",
-              arrow_closed = "",
-              empty = "",
-              empty_open = "",
-            },
-            git = {
-              unstaged = "",
-              staged = "✓",
-              unmerged = "",
-              renamed = "➜",
-              untracked = "★",
-              deleted = "",
-              ignored = "◌",
-            },
-          },
-        },
-        root_folder_label = function(path)
-          return "󱉟 " .. vim.fn.fnamemodify(path, ":t")
-        end,
-        special_files = { "README.md", "Makefile", "Cargo.toml", "package.json" },
-      },
-
-      hijack_directories = { enable = true, auto_open = true },
-
-      update_focused_file = { enable = true },
-
-      filters = { dotfiles = false },
-
-      filesystem_watchers = { enable = false },
-
-      git = { enable = true, ignore = false, show_on_dirs = true, show_on_open_dirs = true, timeout = 400 },
-
-      diagnostics = {
-        enable = true,
-        show_on_dirs = true,
-        show_on_open_dirs = false,
-        icons = { hint = "󰌵", info = "󰋼", warning = "", error = "" },
-      },
-
-      actions = {
-        use_system_clipboard = true,
-        change_dir = { enable = true },
-        open_file = {
-          quit_on_open = false,
-          resize_window = true,
-          window_picker = {
-            enable = true,
-            picker = "default",
-            chars = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-            exclude = {
-              filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
-              buftype = { "nofile", "terminal", "help" },
-            },
-          },
-        },
-        remove_file = { close_window = false },
-      },
-
-      trash = { cmd = "trash", require_confirm = true },
-
-      live_filter = { prefix = "╭─🔍 ", always_show_folders = true },
-
-      notify = { threshold = vim.log.levels.INFO },
-    })
-    vim.cmd("NvimTreeOpen")
-  elseif arg == "center" then
-    require("nvim-tree").setup({
-      view = {
-        side = "left",
-        float = {
-          enable = true,
-          open_win_config = function()
-            local screen_w = vim.opt.columns:get()
-            local screen_h = vim.opt.lines:get()
-            local win_w = math.floor(screen_w * 0.4)
-            local win_h = math.floor(screen_h * 0.8)
-            return {
-              border = "rounded",
-              relative = "editor",
-              row = (screen_h - win_h) / 2,
-              col = (screen_w - win_w) / 2,
-              width = win_w,
-              height = win_h,
-            }
-          end,
-        },
-      },
-      auto_reload_on_write = true,
-      disable_netrw = true,
-      hijack_cursor = true,
-      hijack_netrw = true,
-      sync_root_with_cwd = true,
-
-      renderer = {
-        indent_width = 2,
-        highlight_git = true,
-        highlight_opened_files = "none",
-        indent_markers = {
-          enable = true,
-          inline_arrows = true,
-          icons = { corner = "└", edge = "│", item = "│", bottom = "─", none = " " },
-        },
-        icons = {
-          webdev_colors = true,
-          git_placement = "after",
-          show = { file = true, folder = true, folder_arrow = true, git = true, modified = true },
-          glyphs = {
-            default = "",
-            symlink = "",
-            modified = "●",
-            folder = {
-              default = "",
-              open = "",
-              arrow_open = "",
-              arrow_closed = "",
-              empty = "",
-              empty_open = "",
-            },
-            git = {
-              unstaged = "",
-              staged = "✓",
-              unmerged = "",
-              renamed = "➜",
-              untracked = "★",
-              deleted = "",
-              ignored = "◌",
-            },
-          },
-        },
-        root_folder_label = function(path)
-          return "󱉟 " .. vim.fn.fnamemodify(path, ":t")
-        end,
-        special_files = { "README.md", "Makefile", "Cargo.toml", "package.json" },
-      },
-
-      hijack_directories = { enable = true, auto_open = true },
-
-      update_focused_file = { enable = true },
-
-      filters = { dotfiles = false },
-
-      filesystem_watchers = { enable = false },
-
-      git = { enable = true, ignore = false, show_on_dirs = true, show_on_open_dirs = true, timeout = 400 },
-
-      diagnostics = {
-        enable = true,
-        show_on_dirs = true,
-        show_on_open_dirs = false,
-        icons = { hint = "󰌵", info = "󰋼", warning = "", error = "" },
-      },
-
-      actions = {
-        use_system_clipboard = true,
-        change_dir = { enable = true },
-        open_file = {
-          quit_on_open = false,
-          resize_window = true,
-          window_picker = {
-            enable = true,
-            picker = "default",
-            chars = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-            exclude = {
-              filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
-              buftype = { "nofile", "terminal", "help" },
-            },
-          },
-        },
-        remove_file = { close_window = false },
-      },
-
-      trash = { cmd = "trash", require_confirm = true },
-
-      live_filter = { prefix = "╭─🔍 ", always_show_folders = true },
-
-      notify = { threshold = vim.log.levels.INFO },
-    })
-    vim.cmd("NvimTreeOpen")
-  else
+vim.api.nvim_create_user_command("FileExplorer", function(command)
+  local position = command.args:lower()
+  if position ~= "left" and position ~= "right" and position ~= "center" then
     vim.notify("Usage: :FileExplorer {left|right|center}", vim.log.levels.WARN)
+    return
   end
+
+  save_position(position)
+  setup_tree(position)
+  vim.cmd("NvimTreeOpen")
 end, {
   nargs = 1,
-  complete = function() return { "left", "right", "center" } end,
+  complete = function()
+    return { "left", "right", "center" }
+  end,
 })
