@@ -8,6 +8,8 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local dap_config = require("nitro.core.dap")
+
 require("lazy").setup({
 
   -- File Explorer
@@ -206,6 +208,24 @@ require("lazy").setup({
   { "hrsh7th/cmp-cmdline",      lazy = true },
   { "saadparwaiz1/cmp_luasnip", lazy = true },
 
+  -- Debugging
+  {
+    "mfussenegger/nvim-dap",
+    lazy = true,
+    config = dap_config.setup_dap,
+    keys = dap_config.keys,
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    lazy = true,
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio",
+    },
+    config = dap_config.setup_dapui,
+  },
+  { "nvim-neotest/nvim-nio",        lazy = true },
+
   -- Snippets
   {
     "L3MON4D3/LuaSnip",
@@ -347,7 +367,6 @@ require("lazy").setup({
   {
     "kylechui/nvim-surround",
     version = "*",
-    lazy = true,
     event = "VeryLazy",
     config = function()
       require("nvim-surround").setup({})
