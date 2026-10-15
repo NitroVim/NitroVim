@@ -367,6 +367,7 @@ require("lazy").setup({
   {
     "kylechui/nvim-surround",
     version = "*",
+    lazy = true,
     event = "VeryLazy",
     config = function()
       require("nvim-surround").setup({})
@@ -403,6 +404,7 @@ require("lazy").setup({
   {
     "GustavEikaas/easy-dotnet.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "folke/snacks.nvim" },
+    lazy = true,
     config = function()
       require("easy-dotnet").setup()
     end
@@ -411,7 +413,7 @@ require("lazy").setup({
   { "folke/snacks.nvim",        lazy = true },
   { "simrat39/rust-tools.nvim", ft = "rust" },
 
-  -- Project (loaded with Telescope because its only integration is a Telescope extension)
+  -- Project
   {
     "ahmedkhalf/project.nvim",
     lazy = true,
@@ -487,7 +489,7 @@ require("lazy").setup({
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },
     opts = {},
   },
-  { "nvim-mini/mini.nvim", lazy = true },
+  { "nvim-mini/mini.nvim",  lazy = true },
 
   -- Diagnostics
   {
