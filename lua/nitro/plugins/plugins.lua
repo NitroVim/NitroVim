@@ -383,8 +383,6 @@ require("lazy").setup({
   { "jlcrochet/vim-razor", ft = { "razor", "cshtml" } },
   {
     "GustavEikaas/easy-dotnet.nvim",
-    ft = { "cs", "fsharp", "vb" },
-    cmd = "Dotnet",
     dependencies = { "nvim-lua/plenary.nvim", "folke/snacks.nvim" },
     config = function()
       require("easy-dotnet").setup()
