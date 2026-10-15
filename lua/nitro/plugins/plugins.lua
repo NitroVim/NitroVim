@@ -363,21 +363,6 @@ require("lazy").setup({
   { "MunifTanjim/nui.nvim", lazy = true },
   { "rcarriga/nvim-notify", lazy = false, },
 
-  -- Smear Cursor
-  {
-    "sphamba/smear-cursor.nvim",
-    opts = {
-      stiffness = 0.8,
-      trailing_stiffness = 0.6,
-      stiffness_insert_mode = 0.7,
-      trailing_stiffness_insert_mode = 0.7,
-      damping = 0.95,
-      damping_insert_mode = 0.95,
-      distance_stop_animating = 0.5,
-      time_interval = 5
-    },
-  },
-
   -- Vim Surround
   {
     "kylechui/nvim-surround",
@@ -475,15 +460,6 @@ require("lazy").setup({
     end,
   },
 
-  -- NeoScroll
-  {
-    "karb94/neoscroll.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("neoscroll").setup()
-    end
-  },
-
   -- Text Case
   {
     "johmsalas/text-case.nvim",
@@ -504,9 +480,6 @@ require("lazy").setup({
       "TextCaseStartReplacingCommand",
     },
   },
-
-  --- editorconfig
-  { "editorconfig/editorconfig-vim", event = { "BufReadPre", "BufNewFile" } },
 
   -- Render markdown
   {
@@ -554,15 +527,6 @@ require("lazy").setup({
       "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons",
     },
-  },
-
-  -- Indent
-  {
-    'nvimdev/indentmini.nvim',
-    event = { 'BufReadPost', 'BufNewFile' },
-    config = function()
-      require('indentmini').setup()
-    end,
   },
 
   -- Shared Dependencies
