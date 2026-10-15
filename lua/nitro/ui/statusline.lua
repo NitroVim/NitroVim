@@ -23,7 +23,7 @@ require('lualine').setup {
       'diff',
       {
         'diagnostics',
-        sources = { 'nvim_lsp' },
+        sources = { 'nvim_lsp', 'nvim_diagnostic' },
         sections = { 'error', 'warn', 'info', 'hint' },
         colored = true,
         update_in_insert = false,
@@ -48,7 +48,6 @@ require('lualine').setup {
       'encoding',
       'fileformat',
       'filetype',
-      'searchcount',
       'selectioncount',
     },
     lualine_y = { 'progress' },
