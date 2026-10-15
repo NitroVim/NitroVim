@@ -8,6 +8,8 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local dap_config = require("nitro.core.dap")
+
 require("lazy").setup({
 
   -- File Explorer
@@ -206,6 +208,24 @@ require("lazy").setup({
   { "hrsh7th/cmp-cmdline",      lazy = true },
   { "saadparwaiz1/cmp_luasnip", lazy = true },
 
+  -- Debugging
+  {
+    "mfussenegger/nvim-dap",
+    lazy = true,
+    config = dap_config.setup_dap,
+    keys = dap_config.keys,
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    lazy = true,
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio",
+    },
+    config = dap_config.setup_dapui,
+  },
+  { "nvim-neotest/nvim-nio",        lazy = true },
+
   -- Snippets
   {
     "L3MON4D3/LuaSnip",
@@ -383,9 +403,8 @@ require("lazy").setup({
   { "jlcrochet/vim-razor", ft = { "razor", "cshtml" } },
   {
     "GustavEikaas/easy-dotnet.nvim",
-    ft = { "cs", "fsharp", "vb" },
-    cmd = "Dotnet",
     dependencies = { "nvim-lua/plenary.nvim", "folke/snacks.nvim" },
+    lazy = true,
     config = function()
       require("easy-dotnet").setup()
     end
@@ -394,7 +413,7 @@ require("lazy").setup({
   { "folke/snacks.nvim",        lazy = true },
   { "simrat39/rust-tools.nvim", ft = "rust" },
 
-  -- Project (loaded with Telescope because its only integration is a Telescope extension)
+  -- Project
   {
     "ahmedkhalf/project.nvim",
     lazy = true,
@@ -470,7 +489,7 @@ require("lazy").setup({
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },
     opts = {},
   },
-  { "nvim-mini/mini.nvim", lazy = true },
+  { "nvim-mini/mini.nvim",  lazy = true },
 
   -- Diagnostics
   {
