@@ -335,7 +335,7 @@ require("lazy").setup({
       current_line_blame_opts = {
         virt_text = true,
         virt_text_pos = "eol",
-        delay = 500,
+        delay = 1000,
         ignore_whitespace = false,
       },
       on_attach = function(bufnr)
