@@ -38,6 +38,13 @@ M.keys = {
     desc = "DAP Continue",
   },
   {
+    "<leader>du",
+    function()
+      require("dapui").toggle()
+    end,
+    desc = "DAP Toggle UI",
+  },
+  {
     "<F10>",
     function()
       require("dap").step_over()
